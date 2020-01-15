@@ -356,10 +356,11 @@ class Quicksave {
         );
     }
 
-    addNumber(filename, type, i = 0) {
+    addNumber(dir, filename, type, i = 0) {
         let temp = filename + (i > 0 ? ` (${i})` : '');
-        if (this.accessSync(this.settings.directory + temp + type))
-            return this.addNumber(filename, type, ++i);
+        console.log('trying', dir, temp);
+        if (this.accessSync(dir + temp + type))
+            return this.addNumber(dir, filename, type, ++i);
         return temp;
     }
 
@@ -415,8 +416,9 @@ class Quicksave {
         if(this.settings.subfolderPerUser)
             dir += userId + '/';
 
+        console.log(this.settings);
         if (this.settings.addnum)
-            filename = this.addNumber(filename, filetype);
+            filename = this.addNumber(dir, filename, filetype);
 
         if (this.accessSync(dir + filename + filetype) && !overwrite && !this.settings.addnum) {
             return this.openModal($(ZLibrary.Utilities.formatTString(this.modals.error, {
