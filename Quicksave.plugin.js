@@ -4,219 +4,9 @@
 
 class Quicksave {
     get local() {
-		let lang = navigator.language;
+	let lang = navigator.language;
     	if(document.documentElement.getAttribute('lang'))lang=document.documentElement.getAttribute('lang').split('-')[0];
         switch (lang) {
-            case "es": // Spanish
-                return {
-                    startMessage: "${pluginName} ${version} ha empezado",
-                    description: 'Le permite guardar archivos rápidamente con un nombre corto y aleatorio',
-                    quicksave: "Guardar archivo",
-                    as: 'como',
-                    finished: 'Finalizado',
-                    showFn: "Archivo guardado como ${filename}",
-                    saveFail: "Hubo un problema al guardar el archivo.",
-                    invalidLocation: "Ubicación no válida",
-                    save: "Guardar",
-                    reset: "Reajustar configuraciones",
-                    downloading: 'Bajando...',
-                    noFreeName: 'Error: Ha fallado al encontrar un nombre libre',
-                    modals: {
-                        generalButtons: {
-                            cancel: 'Cancelar',
-                            save: 'Guardar'
-                        },
-                        filenameChoose: {
-                            insertFilename: 'Insira el nombre del archivo'
-                        },
-                        error: {
-                            alreadyExists: 'Archivo <span class="file-name">${filename}</span>${filetype} ya existe',
-                            genRandom: 'Generar aleatorio',
-                            overwrite: 'Sustituir',
-                            chooseNew: 'Elegir nuevo nombre',
-                            question: '¿Qué vas a hacer?',
-                            invalidUrl: 'URL no válida'
-                        }
-                    },
-                    settings: {
-                        panel: 'Panel de configuraciones',
-                        labels: {
-                            directory: 'Directorio',
-                            original: 'Mantener el nombre original',
-                            randomizeUnknown: 'Reemplazar nombres de archivo desconocidos',
-                            filename: 'Mostrar el nombre del archivo al finalzar',
-                            randomLength: 'Tamaño del nombre al azar'
-                        },
-                        help: {
-                            original: 'Guardar archivos con el nombre original en lugar de un aleatorio',
-                            randomizeUnknown: 'Al guardar los nombres de archivos originales, aleatorizar si el nombre de archivo es "unknown".',
-                            filename: 'Si mostrar el nombre del archivo al finalizar o no'
-                        },
-                        protip: {
-                            label: 'Consejo:',
-                            tip: 'Los archivos guardados ganan un nombre al azar en Base64. Sólo 4 caracteres permiten ~ 17 millones de nombres (64^4)'
-                        }
-                    }
-                };
-            case "pt": // Portuguese
-                return {
-                    startMessage: "${pluginName} ${version} iniciado",
-                    description: 'Permite salvar arquivos rapidamente com um nome curto e aleatório',
-                    quicksave: "Salvar arquivo",
-                    as: 'como',
-                    finished: 'Finalizado',
-                    filename: "Arquivo salvo como ${filename}",
-                    saveFail: "Houve um problema ao salvar o arquivo",
-                    invalidLocation: "Local inválido",
-                    save: "Salvar",
-                    reset: "Redefinir configurações",
-                    downloading: 'Baixando...',
-                    noFreeName: 'Erro: Falha ao encontrar um nome disponível',
-                    modals: {
-                        generalButtons: {
-                            cancel: 'Cancelar',
-                            save: 'Salvar'
-                        },
-                        filenameChoose: {
-                            insertFilename: 'Insira o nome do arquivo'
-                        },
-                        error: {
-                            alreadyExists: 'Arquivo <span class="file-name">${filename}</span>${filetype} já existe',
-                            genRandom: 'Gerar aleatório',
-                            overwrite: 'Substituir',
-                            chooseNew: 'Escolher novo nome',
-                            question: 'O que você deseja fazer?',
-                            invalidUrl: 'URL inválido'
-                        }
-                    },
-                    settings: {
-                        panel: 'Painel de configurações',
-                        labels: {
-                            directory: 'Diretório',
-                            original: 'Manter o nome original',
-                            randomizeUnknown: 'Substituir nomes de arquivo desconhecidos',
-                            filename: 'Mostrar nome do arquivo ao terminar de baixar',
-                            randomLength: 'Tamanho do nome aleatório',
-                            autoAddNum: 'Adicionar (n) ao final dos arquivos automaticamente'
-                        },
-                        help: {
-                            original: 'Salvar arquivos com o nome original em vez de um aleatório',
-                            randomizeUnknown: 'Ao manter os nomes de arquivos originais, Randomize se o nome do arquivo for "unknown".',
-                            filename: 'Mostrar o nome do arquivo ao finalizar ou não',
-                            autoAddNum: 'Ao salvar um arquivo com um nome já existente, adicionar (n) ao final do nome'
-                        },
-                        protip: {
-                            label: 'Fica a dica:',
-                            tip: 'Arquivos salvos ganham um nome aleatório em Base64. Só 4 caracteres permitem ~17 milhões de nomes (64^4)'
-                        }
-                    }
-                };
-            case "tr": // Turkish
-                return {
-                    startMessage: "${pluginName} ${version} başladı.",
-                    description: 'Dosyaları kısa bir rastgele adla hızlıca kaydetmenizi sağlar',
-                    quicksave: "Dosyayı kaydet",
-                    as: 'olarak',
-                    finished: 'Tamamlandı',
-                    filename: "Dosya ${filename} olarak kaydedildi.",
-                    saveFail: "Dosya kaydedilirken bir sorun oluştu.",
-                    invalidLocation: "Geçersiz konum",
-                    save: "Kaydet",
-                    reset: "Ayarları sıfırla",
-                    downloading: 'İndiriliyor...',
-                    noFreeName: 'Hata: Failed to find a free file name',
-                    modals: {
-                        generalButtons: {
-                            cancel: 'İptal',
-                            save: 'Kaydet'
-                        },
-                        filenameChoose: {
-                            insertFilename: 'Dosya adını ekle'
-                        },
-                        error: {
-                            alreadyExists: 'Dosya <span class="file-name">${filename}</span>${filetype} zaten var',
-                            genRandom: 'Rastgele oluştur',
-                            overwrite: 'Üzerine Yaz (Overwrite)',
-                            chooseNew: 'Yeni isim seç',
-                            question: 'Ne yapacaksın??',
-                            invalidUrl: 'Geçersiz URL'
-                        }
-                    },
-                    settings: {
-                        panel: 'Ayar paneli',
-                        labels: {
-                            directory: 'Konum',
-                            original: 'Orijinal ismi koru',
-                            randomizeUnknown: 'Bilinmeyen dosya isimlerini değiştir',
-                            filename: 'İndirme işlemi bittiğinde dosya adını göster',
-                            randomLength: 'Rastgele dosya adı uzunluğu',
-                            autoAddNum: 'Dosya adlarının sonuna otomatik olarak (n) ekle'
-                        },
-                        help: {
-                            original: 'Dosyaları yeni rastgele biri yerine orijinal dosya adıyla kaydedin',
-                            randomizeUnknown: 'Orijinal dosya isimlerini saklarken, dosya adı "unknown" ise rastgele hale getirin.',
-                            filename: 'İndirmenin sonunda dosya adının gösterilip gösterilmeyeceği',
-                            autoAddNum: 'Bir dosyayı aynı ada sahip bir dosyaya kaydederken, dosya adının sonuna (n) ekleyin.'
-                        },
-                        protip: {
-                            label: 'Protip:',
-                            tip: 'Kayıtlı dosyalar rasgetle bir base64 adı alır. Sadece 4 karakter, ~17 milyon farklı dosya adına izin verir (64 ^ 4).'
-                        }
-                    }
-                };
-            case "it": // Italian
-				return {
-					startMessage: "${pluginName} ${version} avviato.",
-					description: 'Permette di salvare velocemente le immagini con un nome breve casuale',
-					quicksave: "Salva immagine",
-					as: 'come',
-					finished: 'Fatto',
-					filename: "Immagine salvata come ${filename}",
-					saveFail: "Si è verificato un problema durante il salvataggio.",
-					invalidLocation: "Percorso non valido",
-					save: "Salva",
-					reset: "Reimposta opzioni",
-					downloading: 'Download in corso...',
-					noFreeName: 'Errore: Non è stato possibile trovare un nome utilizzabile per il file',
-					modals: {
-						generalButtons: {
-							cancel: 'Annulla',
-							save: 'Salva'
-						},
-						filenameChoose: {
-							insertFilename: 'Inserisci il nome del file'
-						},
-						error: {
-							alreadyExists: 'Il file <span class="file-name">${filename}</span> esiste già',
-							genRandom: 'Genera casualmente',
-							overwrite: 'Sovrascrivi',
-							chooseNew: 'Scegli un nuovo nome',
-                            question: 'Cosa vuoi fare?',
-                            invalidUrl: 'Invalid URL'
-						}
-					},
-					settings: {
-						panel: 'Pannello di configurazione',
-						labels: {
-							directory: 'Percorso',
-							original: 'Mantieni il nome originale',
-                            randomizeUnknown: 'Replace unknown filenames',
-                            filename: 'Mostra il nome del file una volta completato il download',
-                            randomLength: 'Lunghezza nome del file casuale',
-                            autoAddNum: 'Add (n) at the end of the file names automatically'
-						},
-						help: {
-							original: 'Salva il file con il suo nome originale invece di generarne uno casuale',
-                            randomizeUnknown: 'When keeping original file names, randomize if the file name is "unknown".',
-                            filename: 'Se mostrare il nome del file alla fine oppure no',
-                            autoAddNum: 'When saving a file with the same name of another, add (n) to the end of the file name.'
-						},
-						protip: {
-							label: 'Suggerimento:',
-							tip: 'I file vengono salvati con un nome base64. Solo 4 caratteri possono avere ~17 milioni di combinazioni differenti (64^4).'
-						}
-					}
-				};
             default: // English
                 return {
                     startMessage: "${pluginName} ${version} has started.",
@@ -256,7 +46,8 @@ class Quicksave {
                             randomizeUnknown: 'Replace unknown filenames',
                             filename: 'Show file name when finished downloading',
                             randomLength: 'Random file name length',
-                            autoAddNum: 'Add (n) at the end of the file names automatically'
+                            autoAddNum: 'Add (n) at the end of the file names automatically',
+                            subfolderPerUser: 'Sub folders per user'
                         },
                         help: {
                             original: 'Save files with original file name instead of new random one',
@@ -273,9 +64,9 @@ class Quicksave {
         }
     }
     getAuthor     () { return "Nirewen"             }
-    getName       () { return "Quicksave"           }
+    getName       () { return "QuicksaveRSN"           }
     getDescription() { return this.local.description}
-    getVersion    () { return "0.3.2"               }
+    getVersion    () { return "0.3.3"               }
     start         () {
 		if (!document.getElementById(`${this.getName()}`)) BdApi.injectCSS(`${this.getName()}`, this.css.modals);
 		if (!document.getElementById(`${this.getName()}-style`)) BdApi.injectCSS(`${this.getName()}-style`, this.css.thumb);
@@ -286,7 +77,7 @@ class Quicksave {
 		else libraryScript.addEventListener('load',()=>this.initialize());
 	}
 	initialize() {
-		ZLibrary.PluginUpdater.checkForUpdate(this.getName(), this.getVersion(), "https://raw.githubusercontent.com/nirewen/Quicksave/master/Quicksave.plugin.js");
+		ZLibrary.PluginUpdater.checkForUpdate(this.getName(), this.getVersion(), "https://raw.githubusercontent.com/RakSrinaNa/Quicksave/master/Quicksave.plugin.js");
 		if (settingsCookie['fork-ps-2'] === false) ZLibrary.Toasts.show(ZLibrary.Utilities.formatTString(this.local.startMessage, {pluginName: this.getName(), version: this.getVersion()}));
 		this.initialized = true;
 		this.loadSettings();
@@ -326,12 +117,12 @@ class Quicksave {
         setTimeout(() => modal.remove(), 100);
     }
 
-    openModal(modal, type, url) {
+    openModal(modal, type, url, userId) {
         $('#app-mount').find('[class*=theme-]').last().append(modal);
-        this.bindEvents(modal, type, url);
+        this.bindEvents(modal, type, url, userId);
     }
 
-    bindEvents(modal, type, url) {
+    bindEvents(modal, type, url, userId) {
         let self = this;
         switch (type) {
             case 'filenameChoose': {
@@ -339,14 +130,14 @@ class Quicksave {
 
                 modal.find('.hint').html(filetype);
                 modal.find('.footer .button').click(e => self.closeModal(modal));
-                modal.find('.footer .button-primary').click(e => self.saveCurrentFile(url, modal.find('.filename').val()));
+                modal.find('.footer .button-primary').click(e => self.saveCurrentFile(url, userId, modal.find('.filename').val()));
                 modal.find('.filename')
                     .on("input", e => modal.find('.hint').html(modal.find('.filename').val() + filetype))
                     .on("keyup", e => {
                         let code = e.keyCode || e.which;
                         if (code == 13) {
                             e.preventDefault();
-                            self.saveCurrentFile(url, modal.find('.filename').val());
+                            self.saveCurrentFile(url, userId, modal.find('.filename').val());
                             self.closeModal(modal);
                         }
                     })
@@ -354,13 +145,13 @@ class Quicksave {
             }
             case 'error': {
                 modal.find('button.cancel').click(e => self.closeModal(modal));
-                modal.find('button.overwrite').click(e => self.saveCurrentFile(url, modal.find('.already_exists .file-name').text(), true));
-                modal.find('button.gen-random').click(e => self.saveCurrentFile(url, this.randomFilename64(this.settings.fnLength)));
+                modal.find('button.overwrite').click(e => self.saveCurrentFile(url, userId, modal.find('.already_exists .file-name').text(), true));
+                modal.find('button.gen-random').click(e => self.saveCurrentFile(url, userId, this.randomFilename64(this.settings.fnLength)));
                 modal.find('button.choose-new').click(e => self.openModal($(ZLibrary.Utilities.formatTString(self.modals.name, {
                     insertFilename: this.local.modals.filenameChoose.insertFilename,
                     cancel: this.local.modals.generalButtons.cancel,
                     save: this.local.modals.generalButtons.save
-                })), 'filenameChoose', url));
+                })), 'filenameChoose', url, userId));
                 modal.find('.button').click(e => self.closeModal(modal));
             }
         }
@@ -399,9 +190,9 @@ class Quicksave {
                                 insertFilename: this.local.modals.filenameChoose.insertFilename,
                                 cancel: this.local.modals.generalButtons.cancel,
                                 save: this.local.modals.generalButtons.save
-                            })), 'filenameChoose', filePath);
+                            })), 'filenameChoose', filePath, 0); //TODO: UserId
                         else
-                            self.saveCurrentFile(filePath);
+                            self.saveCurrentFile(filePath, 0); //TODO: UserId
                     });
                 }
                 elem.after(button);
@@ -432,9 +223,9 @@ class Quicksave {
                                 insertFilename: this.local.modals.filenameChoose.insertFilename,
                                 cancel: this.local.modals.generalButtons.cancel,
                                 save: this.local.modals.generalButtons.save
-                            })), 'filenameChoose', link);
+                            })), 'filenameChoose', link, 0); //TODO: UserId
                         } else
-                            self.saveCurrentFile(link);
+                            self.saveCurrentFile(link, 0); //TODO: UserId
                     });
                 $(elem[0]).prepend(item);
             }
@@ -453,9 +244,9 @@ class Quicksave {
                             insertFilename: this.local.modals.filenameChoose.insertFilename,
                             cancel: this.local.modals.generalButtons.cancel,
                             save: this.local.modals.generalButtons.save
-                        })), 'filenameChoose', link);
+                        })), 'filenameChoose', link, 0); //TODO: UserId
                     } else
-                        self.saveCurrentFile(link);
+                        self.saveCurrentFile(link, 0); //TODO: UserId
                 });
         }
     }
@@ -526,6 +317,10 @@ class Quicksave {
                 if (!text.endsWith('/')) this.settings.directory = `${text}/`; else this.settings.directory = text;
 				this.saveSettings();
             }),
+            new ZLibrary.Settings.Switch(this.local.settings.labels.subfolderPerUser, '', this.settings.subfolderPerUser, checked => {
+				this.settings.subfolderPerUser = checked;
+				this.saveSettings();
+            }),
             new ZLibrary.Settings.Switch(this.local.settings.labels.original, this.local.settings.help.original, this.settings.norandom, checked => {
 				this.settings.norandom = checked;
 				this.saveSettings();
@@ -575,7 +370,7 @@ class Quicksave {
         return name;
     }
     
-    saveCurrentFile(url, filename, overwrite = false) {
+    saveCurrentFile(url, userId = '', filename = null, overwrite = false) {
         if (url == '') {
             ZLibrary.Toasts.show(this.local.modals.error.invalidUrl, {type: 'error'});
             return;
@@ -617,6 +412,9 @@ class Quicksave {
         let filetype = `.${fullFilename.split('.').slice(-1)[0]}`,
             tries    = 50;
 
+        if(this.settings.subfolderPerUser)
+            dir += userId + '/';
+
         if (this.settings.addnum)
             filename = this.addNumber(filename, filetype);
 
@@ -628,7 +426,7 @@ class Quicksave {
                 chooseNew: this.local.modals.error.chooseNew,
                 overwrite: this.local.modals.error.overwrite,
                 genRandom: this.local.modals.error.genRandom
-            })), 'error', url);
+            })), 'error', url, userId);
         }
 
         button.html(this.local.downloading);
@@ -640,6 +438,8 @@ class Quicksave {
             return ZLibrary.Toasts.show(this.local.noFreeName, {type: 'error'});
 
         filename += filetype;
+
+        fs.promises.mkdir(dir, { recursive: true }).catch(console.error);
 
         let dest = dir + filename,
             file = fs.createWriteStream(dest),
@@ -660,6 +460,14 @@ class Quicksave {
             file.close();
         });
     }
+
+    findAncestor(el, sel) {
+        while ((el = el.parent()) && !((el.matches || el.matchesSelector).call(el,sel))){
+            console.log(el);
+        };
+        console.log(el);
+        return el;
+    }
     
     saveThumbImage(e){
 		// Reimplementation of pull #2, icon in thumbnails
@@ -678,11 +486,20 @@ class Quicksave {
 			console.error("Couldn't extract url!");
 			return;
 		}
-
 		button.innerHTML = "Wait";
         var name = url.split('/')[6];
         //console.log(name);
-		this.saveCurrentFile(url);
+        
+        let userId = '';
+        let messageContainer = button.closest('.da-containerCozyBounded');
+        if(messageContainer){
+            let avatar = messageContainer.find('.da-headerCozy [user_by_bdfdb]');
+            if(avatar){
+                userId = avatar.getAttribute('user_by_bdfdb');
+            }
+        }
+
+		this.saveCurrentFile(url, userId);
         button.innerHTML = "Saved!";
 	}
     
@@ -693,7 +510,8 @@ class Quicksave {
             randomizeUnknown: true,
             fnLength: 4,
             showfn: true,
-            addnum: false
+            addnum: false,
+            subfolderPerUser: false
         };
     }
     get modals() {
