@@ -497,12 +497,12 @@ class Quicksave {
         if(messageContainer){
             let avatar = messageContainer.find('.da-avatar');
             if(avatar){
-		let rx = /https\:\/\/cdn\.discordapp\.com\/avatars\/(\d+)\/.*/g;
+                let rx = /https\:\/\/cdn\.discordapp\.com\/avatars\/(\d+)\/.*/g;
                 let avatarUrl = avatar.getAttribute('src');
-		let regexResults = rx.exec(avatarUrl);
-		if(regexResults && regexResults.length > 1){
-			userId = regexResults[1];	
-		}
+                let regexResults = rx.exec(avatarUrl);
+                if(regexResults && regexResults.length > 1){
+                    userId = regexResults[1];	
+		        }
             }
         }
 
