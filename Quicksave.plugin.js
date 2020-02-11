@@ -66,7 +66,7 @@ class Quicksave {
     getAuthor     () { return "Nirewen"             }
     getName       () { return "QuicksaveRSN"           }
     getDescription() { return this.local.description}
-    getVersion    () { return "0.3.3"               }
+    getVersion    () { return "0.3.4"               }
     start         () {
 		if (!document.getElementById(`${this.getName()}`)) BdApi.injectCSS(`${this.getName()}`, this.css.modals);
 		if (!document.getElementById(`${this.getName()}-style`)) BdApi.injectCSS(`${this.getName()}-style`, this.css.thumb);
@@ -493,15 +493,20 @@ class Quicksave {
         //console.log(name);
         
         let userId = '';
-        let messageContainer = button.closest('.da-containerCozyBounded');
+        let messageContainer = button.closest('.da-message');
         if(messageContainer){
-            let avatar = messageContainer.find('.da-headerCozy [user_by_bdfdb]');
+            let avatar = messageContainer.find('.da-avatar');
             if(avatar){
-                userId = avatar.getAttribute('user_by_bdfdb');
+		let rx = /https\:\/\/cdn\.discordapp\.com\/avatars\/(\d+)\/.*/g;
+                let avatarUrl = avatar.getAttribute('src');
+		let regexResults = rx.exec(avatarUrl);
+		if(regexResults && regexResults.length > 1){
+			userId = regexResults[1];	
+		}
             }
         }
 
-		this.saveCurrentFile(url, userId);
+	this.saveCurrentFile(url, userId);
         button.innerHTML = "Saved!";
 	}
     
