@@ -14,7 +14,7 @@ class Quicksave {
                     quicksave: "Save file",
                     as: 'as',
                     finished: 'Finished',
-                    filename: "File saved as ${filename}",
+                    filename: "File saved as ${displayFilename}",
                     saveFail: "There was an issue saving the file.",
                     invalidLocation: "Invalid location",
                     save: "Save",
@@ -446,13 +446,18 @@ class Quicksave {
         let dest = dir + filename,
             file = fs.createWriteStream(dest),
             self = this;
-
+        
+        let displayFilename = filename;
+        if(this.settings.subfolderPerUser){
+            displayFilename = userId + "/" + displayFilename;
+        }
+        
         net.get(url, res => {
             res.pipe(file);
             file.on('finish', () => {
                 button.html(self.local.quicksave);
                 ZLibrary.Toasts.show(self.local.finished, {type: 'success'});
-                if (self.settings.showfn)ZLibrary.Toasts.show(ZLibrary.Utilities.formatTString(self.local.filename, {filename}), {type: 'info'});
+                if (self.settings.showfn)ZLibrary.Toasts.show(ZLibrary.Utilities.formatTString(self.local.filename, {displayFilename}), {type: 'info'});
                 file.close();
                 
             });
@@ -494,19 +499,28 @@ class Quicksave {
         
         let userId = '';
         let messageContainer = button.closest('.da-message');
-        if(messageContainer){
-            let avatar = messageContainer.find('.da-avatar');
-            if(avatar){
-                let rx = /https\:\/\/cdn\.discordapp\.com\/avatars\/(\d+)\/.*/g;
-                let avatarUrl = avatar.getAttribute('src');
-                let regexResults = rx.exec(avatarUrl);
-                if(regexResults && regexResults.length > 1){
-                    userId = regexResults[1];	
-		        }
-            }
-        }
+        let avatar;
+        let attempt = 0;
 
-	this.saveCurrentFile(url, userId);
+        do{
+            attempt++;
+            if(messageContainer){
+                avatar = messageContainer.find('.da-avatar');
+                if(avatar){
+                    let rx = /https\:\/\/cdn\.discordapp\.com\/avatars\/(\d+)\/.*/g;
+                    let avatarUrl = avatar.getAttribute('src');
+                    let regexResults = rx.exec(avatarUrl);
+                    if(regexResults && regexResults.length > 1){
+                        userId = regexResults[1];
+                    }
+                }
+                else{
+                    messageContainer = messageContainer.previousSibling;
+                }
+            }
+        } while(!avatar && messageContainer && attempt < 100);
+
+	    this.saveCurrentFile(url, userId);
         button.innerHTML = "Saved!";
 	}
     
