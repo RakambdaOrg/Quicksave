@@ -1,5 +1,5 @@
 # Quicksave
-Fork of rework of [nirewen's Quicksave](https://github.com/nirewen/Quicksave)'s.
+Fork of rework of [nirewen's Quicksave](https://github.com/nirewen/Quicksave).
 
 Using [Zerebos](https://github.com/rauenzi)' Library for toasts and settings.
 
